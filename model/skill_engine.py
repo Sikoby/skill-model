@@ -1,7 +1,6 @@
-from model.skill_set import SkillSet
-from skill_model import SkillModel
-import numpy as np
-from typing import Dict
+from .skill_set import SkillSet
+from .skill_model import SkillModel
+from typing import List, Dict
 from abc import ABC, abstractmethod
 
 
@@ -17,15 +16,15 @@ class SkillEngine(ABC):
         pass
 
     @abstractmethod
-    def get_learning_recommendation(self, requirements: List[SkillSet], candidate: SkillSet) -> Dict[str, float]:
+    def get_matching_positions(self, candidate: SkillSet, job_requirements: List[SkillSet]) -> Dict:
         """
-        Get a learning recommendation for a candidate based on the requirements.
+        Get matching position metrics for a candidate across job listings.
         """
         pass
 
     @abstractmethod
-    def infer_proficancy(self, candidate: SkillSet) -> SkillSet:
+    def get_learning_recommendation(self, requirements: List[SkillSet], candidate: SkillSet) -> Dict[str, float]:
         """
-        Infer the proficancy of a candidate based on the skill models moddelling assumptions about skill composition.
+        Get a learning recommendation for a candidate based on the requirements.
         """
         pass

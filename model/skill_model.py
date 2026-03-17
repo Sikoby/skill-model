@@ -1,8 +1,4 @@
-from typing import List, Optional, Collection, Dict, Self
-from abc import ABC, abstractmethod
-import pickle
-from skill import Skill
-import numpy as np
+from typing import List, Collection, Self
 from dataclasses import dataclass
 
 @dataclass
@@ -14,8 +10,7 @@ class SkillModel:
     skills: Collection[str]
     
     def __init__(self, skills: List[str]):
-        self.skills = sorted(skills, key=lambda x: x.id)
-        self.skill2id = {skill: i for i, skill in enumerate(skills)}
+        self.skills = sorted(skills)
 
     @classmethod
     def load(cls, file_path: str) -> Self:

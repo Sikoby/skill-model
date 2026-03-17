@@ -1,5 +1,5 @@
 from typing import Dict
-from skill_model import SkillModel
+from .skill_model import SkillModel
 
 class SkillSet:
    """
