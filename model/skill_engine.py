@@ -28,3 +28,10 @@ class SkillEngine(ABC):
         Get a learning recommendation for a candidate based on the requirements.
         """
         pass
+
+    @abstractmethod
+    def get_replaceability(self, human: SkillSet, agent: SkillSet, job_requirements: List[SkillSet]) -> Dict:
+        """
+        Assess how replaceable a human is by an AI agent across job requirements.
+        """
+        pass
