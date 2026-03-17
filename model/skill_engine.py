@@ -1,6 +1,6 @@
 from .skill_set import SkillSet
 from .skill_model import SkillModel
-from typing import List, Dict
+from typing import List, Dict, Union
 from abc import ABC, abstractmethod
 
 
@@ -9,7 +9,7 @@ class SkillEngine(ABC):
         self.skill_model = skill_model
 
     @abstractmethod
-    def matches_requirement(self, requirement: SkillSet, candidate: SkillSet) -> bool:
+    def matches_requirement(self, requirement: SkillSet, candidate: SkillSet) -> Union[bool, float]:
         """
         Check if a candidate matches a requirement.
         """
