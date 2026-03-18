@@ -5,10 +5,10 @@ from contextlib import asynccontextmanager
 # Ensure project root is on the path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 from model import SkillSet
 from backend.model import NaiveSkillModel, NaiveSkillEngine
@@ -58,6 +58,27 @@ class AnalyzeRequest(BaseModel):
 @app.get("/api/skills")
 def get_skills():
     return {"skills": state["skill_model"].get_skills()}
+
+
+@app.get("/api/suggest")
+def suggest(
+    selected: Optional[str] = Query(default=None),
+    search: Optional[str] = Query(default=None),
+):
+    all_skills = sorted(state["skill_model"].get_skills())
+    selected_set = set()
+    if selected:
+        selected_set = {s.strip() for s in selected.split(",") if s.strip()}
+
+    # Filter out already selected
+    candidates = [s for s in all_skills if s not in selected_set]
+
+    # Filter by search term
+    if search:
+        q = search.lower()
+        candidates = [s for s in candidates if s.lower().startswith(q)]
+
+    return {"suggestions": candidates[:5]}
 
 
 @app.post("/api/analyze")
