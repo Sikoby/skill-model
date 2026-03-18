@@ -1,3 +1,4 @@
+import { Card, CardContent } from '@/components/ui/card';
 import DemandCard from './DemandCard';
 import SalaryCard from './SalaryCard';
 import CareerFocusCard from './CareerFocusCard';
@@ -6,12 +7,14 @@ import ReplaceabilityCard from './ReplaceabilityCard';
 export default function Dashboard({ data }) {
   if (!data) {
     return (
-      <div className="flex items-center justify-center h-full text-gray-400">
-        <div className="text-center">
-          <div className="text-6xl mb-4">&#x1F4CA;</div>
-          <div className="text-lg">Select your skills and click Analyze</div>
-          <div className="text-sm mt-2">to see your career dashboard</div>
-        </div>
+      <div className="flex items-center justify-center h-full text-muted-foreground">
+        <Card className="border-dashed">
+          <CardContent className="text-center py-12 px-16">
+            <div className="text-6xl mb-4">&#x1F4CA;</div>
+            <div className="text-lg font-medium">Select your skills and click Analyze</div>
+            <div className="text-sm text-muted-foreground mt-2">to see your career dashboard</div>
+          </CardContent>
+        </Card>
       </div>
     );
   }

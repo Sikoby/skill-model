@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchSkills, analyzeSkills } from './api';
+import { Separator } from '@/components/ui/separator';
 import SkillSelector from './components/SkillSelector';
 import Dashboard from './components/Dashboard';
 
@@ -33,14 +34,14 @@ export default function App() {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-gray-50">
-      <header className="bg-white border-b border-gray-200 px-6 py-4">
-        <h1 className="text-xl font-bold text-gray-900">Skill Analyzer</h1>
-        <p className="text-sm text-gray-500">Analyze your skills against the job market and AI capabilities</p>
+    <div className="h-screen flex flex-col bg-background">
+      <header className="bg-card border-b px-6 py-4">
+        <h1 className="text-xl font-bold text-foreground">Skill Analyzer</h1>
+        <p className="text-sm text-muted-foreground">Analyze your skills against the job market and AI capabilities</p>
       </header>
 
       <div className="flex flex-1 overflow-hidden">
-        <aside className="w-80 border-r border-gray-200 bg-white flex-shrink-0">
+        <aside className="w-80 border-r bg-card flex-shrink-0">
           <SkillSelector
             skills={skills}
             selected={selected}
