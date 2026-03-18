@@ -4,6 +4,15 @@ export async function fetchSkills() {
   return data.skills;
 }
 
+export async function fetchSuggestions(selected, search = '') {
+  const params = new URLSearchParams();
+  if (selected.length) params.set('selected', selected.join(','));
+  if (search) params.set('search', search);
+  const res = await fetch(`/api/suggest?${params}`);
+  const data = await res.json();
+  return data.suggestions;
+}
+
 export async function analyzeSkills(skills) {
   const res = await fetch('/api/analyze', {
     method: 'POST',

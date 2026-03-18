@@ -3,6 +3,7 @@ import { fetchSkills, analyzeSkills } from './api';
 import { Separator } from '@/components/ui/separator';
 import SkillSelector from './components/SkillSelector';
 import Dashboard from './components/Dashboard';
+import ThemeToggle from './components/ThemeToggle';
 
 export default function App() {
   const [skills, setSkills] = useState([]);
@@ -35,9 +36,12 @@ export default function App() {
 
   return (
     <div className="h-screen flex flex-col bg-background">
-      <header className="bg-card border-b px-6 py-4">
-        <h1 className="text-xl font-bold text-foreground">Skill Analyzer</h1>
-        <p className="text-sm text-muted-foreground">Analyze your skills against the job market and AI capabilities</p>
+      <header className="bg-card border-b px-6 py-4 flex items-center justify-between">
+        <div>
+          <h1 className="text-xl font-bold text-foreground">Skill Analyzer</h1>
+          <p className="text-sm text-muted-foreground">Analyze your skills against the job market and AI capabilities</p>
+        </div>
+        <ThemeToggle />
       </header>
 
       <div className="flex flex-1 overflow-hidden">
